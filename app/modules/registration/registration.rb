@@ -1,4 +1,4 @@
-require "./app/repositories/user.rb"
+require "./app/repositories/user"
 
 class Registration
   def self.register(attributes)

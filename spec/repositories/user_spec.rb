@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require './app/repositories/user.rb'
+require './app/repositories/user'
 
 describe User do
   subject { User.create :name => "Test", :email => "test@teste.com", :external_id => "0123456789" }

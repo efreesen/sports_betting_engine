@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require './app/modules/registration/registration.rb'
+require './app/modules/registration/registration'
 
 describe Registration do
   subject { Registration.register :name => "Test", :email => "test@teste.com", :external_id => "0123456789" }
