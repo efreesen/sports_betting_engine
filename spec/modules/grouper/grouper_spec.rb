@@ -31,7 +31,7 @@ describe Grouper do
     let(:championship) { Grouper.find_or_create_championship(user.id, "test") }
     let(:team_name)    { "Arsenal" }
     let(:flag_url)     { "http://www.asda-gifts.co.uk/common/client/Images/Product/Small/en-GB/3385-Arsenal-Logo.jpg" }
-    subject     { Grouper.add_team(championship.id, team_name, flag_url) }
+    subject            { Grouper.add_team(championship.id, team_name, flag_url) }
     
     it "adds a new team" do
       subject.should be_valid

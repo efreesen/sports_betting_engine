@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'mutant'
 gem 'active_repository', :path => "/Users/caiotorres/Projects/Personal/active_repository"
 
 group :test do
