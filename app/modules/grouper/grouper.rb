@@ -36,6 +36,7 @@ class Grouper
 
     if team.present?
       team.update_attributes(attributes)
+      team.reload
     else
       raise "Championship does not exist"
     end

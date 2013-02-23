@@ -1,0 +1,6 @@
+development:
+  sessions:
+    default:
+      database: sports_betting_engine
+      hosts:
+        - localhost:27017

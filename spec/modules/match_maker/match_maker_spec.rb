@@ -60,5 +60,21 @@ describe MatchMaker do
       match.home_team_score.should == home_team_score
       match.away_team_score.should == away_team_score
     end
+
+    it "updates scores when official score is changed" do
+      subject
+      user = User.first
+      Bet.delete_all
+      user.update_attribute :score, 0
+
+      user.score.should == 0
+      Registration.bet!(user, 8, 2, 3)
+
+      match = MatchMaker.add_or_update_official_score(8, 2, 3)
+
+      user.reload
+      
+      user.score.should == 3
+    end
   end
 end

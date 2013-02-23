@@ -17,6 +17,10 @@ describe Registration do
     should be_valid
   end
   
+  it "initializes with score of 0" do
+    subject.score.should be_zero
+  end
+  
   it "updates registered user's name" do
     name = "Johnny"
     
@@ -50,8 +54,9 @@ describe Registration do
   end
 
   it "adds bets to a user" do
-    bet = Registration.bet!(subject, 1, 2, 3)
+    bet = Registration.bet!(subject, 8, 2, 3)
 
-    subject.bets.should == [bet]
+    bet.should be_valid
+    subject.bets.map(&:id).should == [bet.id]
   end
 end

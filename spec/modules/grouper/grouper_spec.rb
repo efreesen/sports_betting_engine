@@ -23,7 +23,7 @@ describe Grouper do
 
       Grouper.change_name(user.id, "Championship")
 
-      championship.name.should == "Championship"
+      championship.reload.name.should == "Championship"
     end
   end
 

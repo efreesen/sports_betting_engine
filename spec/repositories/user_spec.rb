@@ -16,10 +16,6 @@ describe User do
   it "creates a valid user" do
     should be_valid
   end
-
-  it "has User as test model_class" do
-    User.get_model_class.should == User
-  end
   
   it "validates uniqueness of external_id" do
     error_message = "External translation missing: en.activemodel.errors.models.user.attributes.external_id.taken"
