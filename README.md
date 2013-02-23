@@ -9,17 +9,17 @@ In Memory Persistence
 
 To test the project using in memory persistence change app/repositories/repository_support.rb to look like this:
 
-  class RepositorySupport
-    def self.save_in_memory?
-      true
-      # false
-    end
+    class RepositorySupport
+      def self.save_in_memory?
+        true
+        # false
+      end
 
-    def self.model_class_suffix
-      "Model"
-      # "Document"
+      def self.model_class_suffix
+        "Model"
+        # "Document"
+      end
     end
-  end
 
 Using this approach my tests took:
 
@@ -31,17 +31,17 @@ ActiveRecord Persistence
 
 If you want to test it with ActiveRecord (using SQLite3 :inmemory:), it should look like this
 
-  class RepositorySupport
-    def self.save_in_memory?
-      true
-      false
-    end
+    class RepositorySupport
+      def self.save_in_memory?
+        true
+        false
+      end
 
-    def self.model_class_suffix
-      "Model"
-      # "Document"
+      def self.model_class_suffix
+        "Model"
+        # "Document"
+      end
     end
-  end
 
 Using this approach my tests took:
 
@@ -53,17 +53,17 @@ Mongoid Persistence
 
 And finally if you want to test it using Mongo (you must have a server running on localhost), it should look like this:
 
-  class RepositorySupport
-    def self.save_in_memory?
-      true
-      false
-    end
+    class RepositorySupport
+      def self.save_in_memory?
+        true
+        false
+      end
 
-    def self.model_class_suffix
-      "Model"
-      "Document"
+      def self.model_class_suffix
+        "Model"
+        "Document"
+      end
     end
-  end
 
 Using this approach my tests took:
 
