@@ -5,10 +5,10 @@ require './app/repositories/user'
 require './app/repositories/repository_support'
 
 if User.get_model_class != User
-  persistance = RepositorySupport.model_class_suffix == "Model" ? "ActiveRecord" : "Mongoid"
-  puts "Testing with ActiveRepository and #{persistance}"
+  persistence = RepositorySupport.model_class_suffix == "Model" ? "ActiveRecord" : "Mongoid"
+  puts "Testing with ActiveRepository and #{persistence}"
 
-  if persistance == "Mongoid"
+  if persistence == "Mongoid"
     Mongoid.load!("support/mongoid.yml", :development)
   else
     ActiveRecord::Base.establish_connection :adapter => "sqlite3", :database => ":memory:"
