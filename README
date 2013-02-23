@@ -46,7 +46,7 @@ Finished in 0.68653 seconds
 
 _
 
-And finally if you want to test it using Mongo, it should look like this:
+And finally if you want to test it using Mongo (you must have a server running on localhost), it should look like this:
 
   class RepositorySupport
     def self.save_in_memory?
