@@ -5,7 +5,7 @@ class Registration
   def self.register(attributes)
     external_id = attributes[:external_id]
     
-    user = User.find_by_external_id external_id
+    user = User.where(:external_id => external_id).first
 
     if user.nil?
       user = User.create(attributes.merge(:score => 0))
@@ -17,7 +17,7 @@ class Registration
   end
 
   def self.update(external_id, key, value)
-    user = User.find_by_external_id external_id
+    user = User.where(:external_id => external_id).first
 
     user.update_attribute key.to_sym, value unless key == :external_id
 
@@ -30,7 +30,7 @@ class Registration
     match = Match.find_by_id(match_id)
 
     unless match.nil? || user.nil?
-      bet = Bet.find_or_create(
+      bet = Bet.find_or_initialize(
         :user_id         => user.id,
         :match_id        => match_id
       )
@@ -62,7 +62,7 @@ class Registration
         user.score += score
       end
 
-      user.persist
+      user.save
     end
   end
 end

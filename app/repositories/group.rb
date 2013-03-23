@@ -3,9 +3,10 @@ require "./app/repositories/repository_support"
 require "./app/repositories/championship"
 require "./app/models/group_model"
 require "./app/documents/group_document"
+require "./app/mapper_documents/group_mapper_document"
 
 class Group < ActiveRepository::Base
-  fields :championship_id, :name
+  fields :championship_id, :name, :created_at, :updated_at
 
   belongs_to :championship
 

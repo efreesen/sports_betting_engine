@@ -7,5 +7,6 @@ class RepositorySupport
   def self.model_class_suffix
     "Model"
     # "Document"
+    # "MapperDocument"
   end
 end

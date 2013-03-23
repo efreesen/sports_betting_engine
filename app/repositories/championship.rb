@@ -3,9 +3,10 @@ require "./app/repositories/repository_support"
 require "./app/repositories/user"
 require "./app/models/championship_model"
 require "./app/documents/championship_document"
+require "./app/mapper_documents/championship_mapper_document"
 
 class Championship < ActiveRepository::Base
-  fields :owner_id, :name
+  fields :owner_id, :name, :created_at, :updated_at
 
   belongs_to :owner, :class_name => User
 

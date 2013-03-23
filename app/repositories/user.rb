@@ -3,9 +3,10 @@ require "./app/repositories/repository_support"
 require "./app/repositories/bet"
 require "./app/models/user_model"
 require "./app/documents/user_document"
+require "./app/mapper_documents/user_mapper_document"
 
 class User < ActiveRepository::Base
-  fields :name, :email, :external_id, :score
+  fields :name, :email, :external_id, :score, :created_at, :updated_at
 
   has_many :bets
 

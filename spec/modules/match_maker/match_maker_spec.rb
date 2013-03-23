@@ -68,12 +68,12 @@ describe MatchMaker do
       user.update_attribute :score, 0
 
       user.score.should == 0
-      Registration.bet!(user, 8, 2, 3)
+      bet = Registration.bet!(user, 8, 2, 3)
 
       match = MatchMaker.add_or_update_official_score(8, 2, 3)
 
       user.reload
-      
+
       user.score.should == 3
     end
   end

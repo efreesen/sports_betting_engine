@@ -4,9 +4,10 @@ require "./app/repositories/group"
 require "./app/repositories/team"
 require "./app/models/match_model"
 require "./app/documents/match_document"
+require "./app/mapper_documents/match_mapper_document"
 
 class Match < ActiveRepository::Base
-  fields :group_id, :home_team_id, :away_team_id, :home_team_score, :away_team_score
+  fields :group_id, :home_team_id, :away_team_id, :home_team_score, :away_team_score, :created_at, :updated_at
 
   belongs_to :group
   belongs_to :home_team, :class_name => Team

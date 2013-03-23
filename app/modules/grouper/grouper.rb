@@ -54,8 +54,8 @@ class Grouper
 
   private
     def self.get_championship(user_id, name = nil)
-      @championship =  name.nil? ? 
-                         Championship.find_by_owner_id(user_id) :
-                         Championship.find_by_owner_id_and_name(user_id, name)
+      @championship = (name.nil? ? 
+                       Championship.where(:owner_id => user_id) :
+                       Championship.where(:owner_id => user_id, :name => name)).first
     end
 end

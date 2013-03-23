@@ -5,11 +5,18 @@ require './app/repositories/user'
 require './app/repositories/repository_support'
 
 if User.get_model_class != User
-  persistence = RepositorySupport.model_class_suffix == "Model" ? "ActiveRecord" : "Mongoid"
+  persistence = case RepositorySupport.model_class_suffix 
+                when "Model"          then "ActiveRecord"
+                when "MapperDocument" then "MongoMapper"
+                when "Document"       then "Mongoid"
+                end
   puts "Testing with ActiveRepository and #{persistence}"
 
   if persistence == "Mongoid"
     Mongoid.load!("support/mongoid.yml", :development)
+  elsif persistence == "MongoMapper"
+    MongoMapper.connection = Mongo::Connection.new('localhost', 27017)
+    MongoMapper.database = "sports_betting_engine"
   else
     ActiveRecord::Base.establish_connection :adapter => "sqlite3", :database => ":memory:"
     

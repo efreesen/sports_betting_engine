@@ -19,7 +19,7 @@ describe Grouper do
     end
 
     it "changes the name of the championship" do
-      championship = Championship.find_by_owner_id(user.id)
+      championship = Championship.where(:owner_id => user.id).first
 
       Grouper.change_name(user.id, "Championship")
 

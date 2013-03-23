@@ -3,9 +3,10 @@ require "./app/repositories/repository_support"
 require "./app/repositories/user"
 require "./app/models/team_model"
 require "./app/documents/team_document"
+require "./app/mapper_documents/team_mapper_document"
 
 class Team < ActiveRepository::Base
-  fields :championship_id, :name, :flag_url
+  fields :championship_id, :name, :flag_url, :created_at, :updated_at
 
   belongs_to :owner, :class_name => User
 
