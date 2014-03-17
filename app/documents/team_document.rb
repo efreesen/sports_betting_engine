@@ -5,7 +5,6 @@ class TeamDocument
 
   store_in collection: "teams"
 
-  field :_id, type: Integer, default: -> { TeamDocument.last ? TeamDocument.last.id + 1 : 1 }
   field :championship_id
   field :name
   field :flag_url

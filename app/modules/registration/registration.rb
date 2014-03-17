@@ -27,17 +27,17 @@ class Registration
   end
 
   def self.bet!(user, match_id, home_team_score, away_team_score)
-    match = Match.find_by_id(match_id)
+    match = Match.find_by(id: match_id)
 
     unless match.nil? || user.nil?
-      bet = Bet.find_or_initialize(
-        :user_id         => user.id,
-        :match_id        => match_id
-      )
+      bet = Bet.where(
+        user_id:  user.id,
+        match_id: match_id
+      ).first_or_initialize
 
       bet.update_attributes(
-        :home_team_score => home_team_score,
-        :away_team_score => away_team_score
+        home_team_score: home_team_score,
+        away_team_score: away_team_score
       )
 
       bet.reload

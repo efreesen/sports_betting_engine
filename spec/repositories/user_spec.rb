@@ -18,7 +18,7 @@ describe User do
   end
   
   it "validates uniqueness of external_id" do
-    error_message = "External translation missing: en.activemodel.errors.models.user.attributes.external_id.taken"
+    error_message = "External has already been taken"
     other = User.create :name => "Thomas", :email => "thomas@teste.com", :external_id => "0123456789"
 
     other.should_not be_valid

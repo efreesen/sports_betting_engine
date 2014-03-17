@@ -11,8 +11,8 @@ describe MatchMaker do
   let(:away_team_name) { "Manchester" }
   let(:home_flag_url)  { "http://www.asda-gifts.co.uk/common/client/Images/Product/Small/en-GB/3385-Arsenal-Logo.jpg" }
   let(:away_flag_url)  { "http://the11.ca/wp-content/uploads/2011/03/manchester-united-logo.png" }
-  let(:home_team)      { Grouper.add_team(championship.id, home_team_name, home_flag_url) }
-  let(:away_team)      { Grouper.add_team(championship.id, away_team_name, away_flag_url) }
+  let(:home_team)      { Grouper.add_team(user.id, home_team_name, home_flag_url) }
+  let(:away_team)      { Grouper.add_team(user.id, away_team_name, away_flag_url) }
   let(:group_name)     { "Group A" }
   let(:group)          { Grouper.add_group(user.id, championship.name, group_name) }
 
@@ -68,9 +68,9 @@ describe MatchMaker do
       user.update_attribute :score, 0
 
       user.score.should == 0
-      bet = Registration.bet!(user, 8, 2, 3)
+      bet = Registration.bet!(user, subject.id, 2, 3)
 
-      match = MatchMaker.add_or_update_official_score(8, 2, 3)
+      match = MatchMaker.add_or_update_official_score(subject.id, 2, 3)
 
       user.reload
 

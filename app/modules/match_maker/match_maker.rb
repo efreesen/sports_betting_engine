@@ -6,7 +6,7 @@ class MatchMaker
   end
 
   def self.change_match(id, new_home_team, new_away_team)
-    match = Match.find_by_id(id)
+    match = Match.find_by(id: id)
 
     if match.present?
       match.update_attributes :home_team_id => new_home_team.id, :away_team_id => new_away_team.id
@@ -17,13 +17,12 @@ class MatchMaker
   end
 
   def self.add_or_update_official_score(id, home_team_score, away_team_score)
-    match = Match.find_by_id(id)
+    match = Match.find_by(id: id)
 
     if match.present?
       match.update_attributes :home_team_score => home_team_score, :away_team_score => away_team_score
+      Registration.update_scores(match.group.championship)
     end
-
-    Registration.update_scores(match.group.championship)
 
     match
   end

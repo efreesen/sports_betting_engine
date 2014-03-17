@@ -54,9 +54,10 @@ describe Registration do
   end
 
   it "adds bets to a user" do
-    bet = Registration.bet!(subject, 8, 2, 3)
+    match = Match.last
+    bet = Registration.bet!(subject, match.id, 2, 3)
 
     bet.should be_valid
-    subject.bets.map(&:id).should == [bet.id]
+    subject.bets.pluck(:id).should == [bet.id]
   end
 end

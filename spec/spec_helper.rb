@@ -1,22 +1,19 @@
 require 'rspec'
 require 'rspec/autorun'
 require 'shoulda/matchers/active_model'
+require './app/repositories/base_repository'
 require './app/repositories/user'
-require './app/repositories/repository_support'
+require 'pry'
 
-if User.get_model_class != User
-  persistence = case RepositorySupport.model_class_suffix 
+if User.persistence_class != User
+  persistence = case BaseRepository.postfix
                 when "Model"          then "ActiveRecord"
-                when "MapperDocument" then "MongoMapper"
                 when "Document"       then "Mongoid"
                 end
   puts "Testing with ActiveRepository and #{persistence}"
 
   if persistence == "Mongoid"
     Mongoid.load!("support/mongoid.yml", :development)
-  elsif persistence == "MongoMapper"
-    MongoMapper.connection = Mongo::Connection.new('localhost', 27017)
-    MongoMapper.database = "sports_betting_engine"
   else
     ActiveRecord::Base.establish_connection :adapter => "sqlite3", :database => ":memory:"
     
@@ -65,5 +62,5 @@ if User.get_model_class != User
     end
   end
 else
-  puts "Testing with ActiveRepository :inmemory"
+  puts "Testing with ActiveRepository :in_memory"
 end

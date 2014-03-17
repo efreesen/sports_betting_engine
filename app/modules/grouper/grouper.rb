@@ -1,3 +1,4 @@
+require './app/modules/registration/registration'
 require "./app/repositories/championship"
 require "./app/repositories/group"
 require "./app/repositories/team"
@@ -32,7 +33,7 @@ class Grouper
   end
 
   def self.update_team(team_id, attributes)
-    team = Team.find_by_id(team_id)
+    team = Team.find_by(id: team_id)
 
     if team.present?
       team.update_attributes(attributes)
@@ -54,8 +55,7 @@ class Grouper
 
   private
     def self.get_championship(user_id, name = nil)
-      @championship = (name.nil? ? 
-                       Championship.where(:owner_id => user_id) :
-                       Championship.where(:owner_id => user_id, :name => name)).first
+      query = (name.nil? ? {owner_id: user_id} : {owner_id: user_id, name: name})
+      @championship = Championship.where(query).first
     end
 end

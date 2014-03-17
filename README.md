@@ -7,23 +7,16 @@ In order to make testing with the diferent persistence methods easier. I made a 
 In Memory Persistence
 ---------------------
 
-To test the project using in memory persistence change app/repositories/repository_support.rb to look like this:
+To test the project using in memory persistence change app/repositories/base_repository.rb to look like this:
 
-    class RepositorySupport
-      def self.save_in_memory?
-        true
-        # false
-      end
-
-      def self.model_class_suffix
-        "Model"
-        # "Document"
-      end
+    class BaseRepository < ActiveRepository::Base
+      self.save_in_memory = true
+      # self.postfix = "Model"
     end
 
 Using this approach my tests took:
 
-Finished in 0.12586 seconds
+Finished in 0.85932 seconds
 25 examples, 0 failures
 
 ActiveRecord Persistence
@@ -31,21 +24,14 @@ ActiveRecord Persistence
 
 If you want to test it with ActiveRecord (using SQLite3 :inmemory:), it should look like this
 
-    class RepositorySupport
-      def self.save_in_memory?
-        true
-        false
-      end
-
-      def self.model_class_suffix
-        "Model"
-        # "Document"
-      end
+    class BaseRepository < ActiveRepository::Base
+      self.save_in_memory = false
+      self.postfix = "Model"
     end
 
 Using this approach my tests took:
 
-Finished in 0.68653 seconds
+Finished in 1.75 seconds
 25 examples, 0 failures
 
 Mongoid Persistence
@@ -53,21 +39,14 @@ Mongoid Persistence
 
 And finally if you want to test it using Mongo (you must have a server running on localhost), it should look like this:
 
-    class RepositorySupport
-      def self.save_in_memory?
-        true
-        false
-      end
-
-      def self.model_class_suffix
-        "Model"
-        "Document"
-      end
+    class BaseRepository < ActiveRepository::Base
+      self.save_in_memory = false
+      self.postfix = "Document"
     end
 
 Using this approach my tests took:
 
-Finished in 0.95125 seconds
+Finished in 1.77 seconds
 25 examples, 0 failures
 
 Thank You
